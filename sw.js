@@ -1,6 +1,6 @@
 ;
 //asignar un nombre y versión al cache
-const CACHE_NAME = 'v1_cache_Pizzas',
+const CACHE_NAME = 'v1_cache_Sushi',
     urlsToCache = [
         './',
         'https://fonts.googleapis.com/css?family=Raleway:400,700',
@@ -9,8 +9,8 @@ const CACHE_NAME = 'v1_cache_Pizzas',
         'https://use.fontawesome.com/releases/v5.0.6/webfonts/fa-brands-400.woff2',
         './style.css',
         './script.js',
-        './img/Pizzalogo.png',
-        './img/Pizzalogo.png'
+        './img/MakiLogo.png',
+        './img/MakiLogo.png'
     ]
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
@@ -27,7 +27,7 @@ self.addEventListener('install', e => {
 
 //una vez que se instala el SW, se activa y busca los recursos para hacer que funcione sin conexión
 self.addEventListener('activate', e => {
-    const cacheWhitelist = [CACHE_NAME]
+    const inicialcache = [CACHE_NAME]
 
     e.waitUntil(
         caches.keys()
@@ -35,7 +35,7 @@ self.addEventListener('activate', e => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     //Eliminamos lo que ya no se necesita en cache
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                    if (inicialcache.indexOf(cacheName) === -1) {
                         return caches.delete(cacheName)
                     }
                 })
